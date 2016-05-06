@@ -3,26 +3,38 @@
  */
 var chai = require('chai');
 var chaiHttp = require('chai-http');
-var should = chai.should();
+var expect = chai.expect;
 
 chai.use(chaiHttp);
 
 
 describe("server", function() {
 
-  it("should have a status of 404", function () {
+  it("should have a status of 200", function (done) {
     chai.request('http://localhost:1337')
         .get("/")
-        .end(function(res){
-          expect(res).to.have.status(404);
+        .end(function(err, res){
+            expect(res).to.have.status(200);
+            done();
         });
   });
 
-  // it("should return 'Hello, World!'", function () {
+  it("should return text/plain", function (done) {
+    chai.request('http://localhost:1337')
+        .get("/")
+        .end(function(err, res){
+          expect(res).to.have.header('content-type', 'text/plain');
+          done();
+        });
+  });
+
+  // it("should return 'Hello, World!", function (done) {
   //   chai.request('http://localhost:1337')
   //       .get("/")
-  //       .end(function(err, res){
-  //         res.body.should.be("Hello, Wold!");
+  //       .end(function(err, res, body){
+  //         var text = chai.load(body);
+  //         expect(text).contains('Hello, World!');
+  //         done();
   //       });
   // });
 
