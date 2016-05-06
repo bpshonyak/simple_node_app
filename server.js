@@ -6,8 +6,12 @@ var server = require("http"); //http module
 
 methods.data.getUsers();
 
-var engine = function () {
-  
+var engine = function (req, res) {
+
+  res.writeHead("200", {'Content-Type': 'text/plain'});
+  res.end("Hello, World!");
+
 };
 
 server.createServer(engine).listen(1337); //leet port
+
