@@ -28,14 +28,4 @@ describe("server", function() {
         });
   });
 
-  // it("should return 'Hello, World!", function (done) {
-  //   chai.request('http://localhost:1337')
-  //       .get("/")
-  //       .end(function(err, res, body){
-  //         var text = chai.load(body);
-  //         expect(text).contains('Hello, World!');
-  //         done();
-  //       });
-  // });
-
 });
