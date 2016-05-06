@@ -14,7 +14,11 @@ var engine = function (req, res) {
 
 };
 
+//Called every time the server receives a new request
+var requestReceived = function(){
+  console.log("NEW REQUEST!");
+};
 
 
 var server = http.createServer(engine);
-server.listen(1337); //leet port
+server.listen(1337, requestReceived); //leet port

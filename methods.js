@@ -2,17 +2,19 @@
  * Created by bogdan on 5/5/16.
  */
 
-var methods = {
-  getUsers: function () {
-    console.log("Fetching users!");
-  },
-  authenticate: function () {
-    console.log("Authenticating");
-  },
-  deleteUser: function () {
-    console.log("Deleting user...");
-  }
+//Node creates this by default...
+//module.exports = exports = {}
+
+var methods = module.exports = {};
+
+methods.getUsers = function () {
+  console.log("Fetching users!");
 };
 
-//Export only what is needed
-exports.data = methods;
+methods.authenticate = function () {
+  console.log("Authenticating");
+};
+
+methods.deleteUser = function () {
+  console.log("Deleting user...");
+};
