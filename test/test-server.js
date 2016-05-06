@@ -5,13 +5,22 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 var expect = chai.expect;
 
-chai.use(chaiHttp);
+var server = require("../server");
 
+chai.use(chaiHttp);
 
 describe("server", function() {
 
+  before(function () {
+    server.listen(1337);
+  });
+
+  after(function () {
+    server.close();
+  });
+
   it("should have a status of 200", function (done) {
-    chai.request('http://localhost:1337')
+    chai.request("http://localhost:1337")
         .get("/")
         .end(function(err, res){
             expect(res).to.have.status(200);

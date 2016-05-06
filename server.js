@@ -20,5 +20,6 @@ var requestReceived = function(){
 };
 
 
-var server = http.createServer(engine);
+var server = module.exports = http.createServer(engine);
+
 server.listen(1337, requestReceived); //leet port
