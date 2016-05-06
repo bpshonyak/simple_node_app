@@ -2,7 +2,8 @@
  * Created by bogdan on 5/5/16.
  */
 var methods = require("./methods");
-var server = require("http"); //http module
+var http = require("http"); //http module
+
 
 methods.data.getUsers();
 
@@ -13,5 +14,7 @@ var engine = function (req, res) {
 
 };
 
-server.createServer(engine).listen(1337); //leet port
 
+
+var server = http.createServer(engine);
+server.listen(1337); //leet port
