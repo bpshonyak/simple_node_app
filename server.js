@@ -5,7 +5,7 @@ var methods = require("./methods");
 var http = require("http"); //http module
 
 
-methods.data.getUsers();
+methods.getUsers();
 
 var engine = function (req, res) {
 

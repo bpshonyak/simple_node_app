@@ -5,7 +5,7 @@
 //Node creates this by default...
 //module.exports = exports = {}
 
-var methods = module.exports = {};
+var methods = module.exports = exports = {};
 
 methods.getUsers = function () {
   console.log("Fetching users!");
