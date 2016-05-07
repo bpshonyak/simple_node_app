@@ -3,4 +3,4 @@
  */
 var server = require("./server");
 
-server.listen(1337); //leet port
+server.listen(process.env.PORT || 1337); //leet port
