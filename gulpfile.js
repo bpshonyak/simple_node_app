@@ -9,8 +9,5 @@ gulp.task('pre-commit', ['unit']);
 gulp.task('unit', function() {
   return gulp.src('./test/test-server.js', {read: false})
       // gulp-mocha needs filepaths so you can't have any plugins before it
-      .pipe(mocha({reporter: 'nyan'}))
-      .once('end', function () {
-        process.exit();
-      });
+      .pipe(mocha({reporter: 'nyan'}));
 });
