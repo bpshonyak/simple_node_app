@@ -10,7 +10,7 @@ var app;
 
 chai.use(chaiHttp);
 
-describe("server", function() {
+describe("server requests", function() {
 
   before(function () {
     app = server.listen(1337);
@@ -22,20 +22,20 @@ describe("server", function() {
 
   it("should have a status of 200", function (done) {
     chai.request("http://localhost:1337")
-        .get("/")
+        .get("/index")
         .end(function(err, res){
             expect(res).to.have.status(200);
             done();
         });
   });
 
-  // it("should return text/plain", function (done) {
-  //   chai.request('http://localhost:1337')
-  //       .get("/")
-  //       .end(function(err, res){
-  //         expect(res).to.have.header('content-type', 'text/plain');
-  //         done();
-  //       });
-  // });
+  it("should have a status of 404", function (done) {
+    chai.request("http://localhost:1337")
+        .get("/random")
+        .end(function(err, res){
+          expect(res).to.have.status(404);
+          done();
+        });
+  });
 
 });
