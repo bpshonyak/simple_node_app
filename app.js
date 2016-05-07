@@ -1,6 +1,9 @@
 /**
  * Created by bogdan on 5/6/16.
  */
-var server = require("./server");
+var app = require("./server");
 
-server.listen(process.env.PORT || 1337); //leet port
+
+app.listen(1337);
+
+// server.listen(process.env.PORT || 1337); //leet port
