@@ -17,7 +17,12 @@ app.get("/", function(req, res){
   res.sendFile("index.html", {root: path.join(__dirname, "./files")}); //Home page
 });
 
-//handle requests - user REGEX for more general file handling
+//handle query params
+app.get("/json", function (req, res) {
+  res.end(JSON.stringify(req.query));
+});
+
+//handle gender file requests
 app.get(/^(.+)$/, function (req, res) {
 
   console.log(path.join(__dirname, "./files/", req.params[0] + ".html"));
@@ -32,6 +37,7 @@ app.get(/^(.+)$/, function (req, res) {
     res.sendFile("404.html", {root: path.join(__dirname, "./files")}); //404 page
   }
 
-
 });
+
+
 
