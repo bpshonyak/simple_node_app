@@ -1,8 +1,8 @@
 /**
  * Created by bogdan on 5/5/16.
  */
-var methods = require("./local_modules/methods");
 var bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
 var path = require("path");
 var fs = require("fs");
 
@@ -11,6 +11,7 @@ var app = module.exports = express();
 
 //specify the use of middleware
 app.use(bodyParser());
+app.use(cookieParser());
 
 //serve files
 app.use("/assets", express.static(__dirname + "/assets"));
@@ -30,6 +31,17 @@ app.post("/say", function (req, res) {
   res.end(JSON.stringify(req.body));
 });
 
+//handel cookies
+app.get("/getCookie", function (req, res) {
+  res.cookie("exampleCookie", "Bogdan is a Boss.");
+  res.end("A cookie was set on your machine! ;)");
+});
+
+app.get("/removeCookie", function (req, res) {
+  res.clearCookie("exampleCookie");
+  res.end("exampleCookie has been removed!");
+});
+
 //handle gender file requests
 app.get(/^(.+)$/, function (req, res) {
 
@@ -47,6 +59,5 @@ app.get(/^(.+)$/, function (req, res) {
   }
 
 });
-
 
 
