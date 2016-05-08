@@ -16,14 +16,10 @@ app.use(bodyParser());
 app.use(cookieParser());
 
 //advanced routing -----------------------------------------------------------------
-app.use("/advanced", router);
+app.use("/users", router);
 
-router.get("/first", function (req, res) {
-  res.end("First route!");
-});
-
-router.get("/second", function (req, res) {
-  res.end("Second route!");
+router.get("/:username(\\w+)", function (req, res) {
+  res.end(JSON.stringify(req.params));
 });
 
 //serve files

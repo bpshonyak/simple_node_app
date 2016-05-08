@@ -20,7 +20,7 @@ describe("server requests", function() {
     app.close();
   });
 
-  it("should have a status of 200", function (done) {
+  it("/index should have a status of 200", function (done) {
     chai.request("http://localhost:1337")
         .get("/index")
         .end(function(err, res){
@@ -29,9 +29,27 @@ describe("server requests", function() {
         });
   });
 
-  it("should have a status of 404", function (done) {
+  it("/random should have a status of 404", function (done) {
     chai.request("http://localhost:1337")
         .get("/random")
+        .end(function(err, res){
+          expect(res).to.have.status(404);
+          done();
+        });
+  });
+
+  it("/users/bogdan should have a status of 200", function (done) {
+    chai.request("http://localhost:1337")
+        .get("/users/bogdan")
+        .end(function(err, res){
+          expect(res).to.have.status(200);
+          done();
+        });
+  });
+
+  it("/users/@!# should have a status of 404", function (done) {
+    chai.request("http://localhost:1337")
+        .get("/users/@!#")
         .end(function(err, res){
           expect(res).to.have.status(404);
           done();
