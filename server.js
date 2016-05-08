@@ -9,9 +9,22 @@ var fs = require("fs");
 var express = require("express");
 var app = module.exports = express();
 
+var router = express.Router();
+
 //specify the use of middleware
 app.use(bodyParser());
 app.use(cookieParser());
+
+//advanced routing -----------------------------------------------------------------
+app.use("/advanced", router);
+
+router.get("/first", function (req, res) {
+  res.end("First route!");
+});
+
+router.get("/second", function (req, res) {
+  res.end("Second route!");
+});
 
 //serve files
 app.use("/assets", express.static(__dirname + "/assets"));
