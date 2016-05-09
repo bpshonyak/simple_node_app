@@ -3,6 +3,7 @@
  */
 var chai = require('chai');
 var chaiHttp = require('chai-http');
+var bodyParser = require("body-parser");
 var expect = chai.expect;
 
 var server = require("../server");
@@ -43,6 +44,22 @@ describe("server requests", function() {
         .get("/users/bogdan")
         .end(function(err, res){
           expect(res).to.have.status(200);
+          done();
+        });
+  });
+
+  it("/users/bogdan should return bogdan", function (done) {
+    chai.request("http://localhost:1337")
+        .get("/users/bogdan")
+        .end(function(err, res){
+          var body = "";
+          // expect(res.body).to.equal("bogdan");
+          res.on('data', function(chunk) {
+            body += chunk;
+          });
+          res.on('end', function() {
+            console.log(body);
+          });
           done();
         });
   });
